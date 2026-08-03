@@ -2,7 +2,7 @@
 
 ## Status
 
-**Implemented as the `0.5.3` Admin role and validated in a controlled reference deployment.** The Admin role is separate from Read, Editor, and Publisher and is limited to named account/container administration. Each adopter must review their own target account, container, and authorization before any mutation.
+**Implemented as the `0.5.4` Admin role and validated in a controlled reference deployment.** The Admin role is separate from Read, Editor, and Publisher and is limited to named account/container administration. Each adopter must review their own target account, container, and authorization before any mutation.
 
 ## Purpose
 

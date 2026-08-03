@@ -2,7 +2,7 @@
 
 This is the operational procedure for installing, validating, upgrading, removing, and reinstalling the package on self-hosted n8n.
 
-> ✅ Public package: `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.3`
+> ✅ Public package: `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.4`
 >
 > ⚠️ Do not use this procedure on n8n Cloud: unverified community nodes are not available there.
 
@@ -35,7 +35,7 @@ Settings → Community Nodes → Install
 Enter:
 
 ```text
-@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.3
+@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.4
 ```
 
 Do not use an unpinned package in production.
@@ -48,7 +48,7 @@ If n8n requests a restart, do so only when backup and rollback are available.
 
 ### 4. Verify the installation
 
-In **Settings → Community Nodes**, confirm `0.5.3`. In the editor, search for `Google Tag Manager` and confirm:
+In **Settings → Community Nodes**, confirm `0.5.4`. In the editor, search for `Google Tag Manager` and confirm:
 
 - Google Tag Manager;
 - Google Tag Manager Editor;
@@ -66,7 +66,7 @@ N8N_COMMUNITY_PACKAGES_MANAGED_BY_ENV=true
 N8N_COMMUNITY_PACKAGES_ENABLED=true
 N8N_UNVERIFIED_PACKAGES_ENABLED=true
 N8N_COMMUNITY_PACKAGES_REGISTRY=https://registry.npmjs.org
-N8N_COMMUNITY_PACKAGES=[{"name":"@ninjadatabuilder/n8n-nodes-google-tag-manager","version":"0.5.3"}]
+N8N_COMMUNITY_PACKAGES=[{"name":"@ninjadatabuilder/n8n-nodes-google-tag-manager","version":"0.5.4"}]
 ```
 
 In a `docker-compose.yml`, preserve the JSON as a valid string. Validate before recreating:
@@ -193,7 +193,7 @@ This destroys only disposable sandbox state when run in the correct project dire
 | Symptom | Likely diagnosis | Next action |
 | --- | --- | --- |
 | Package does not appear | Instance is not self-hosted or installation is blocked | Check instance type and Community Nodes policy |
-| npm `404` | Wrong registry, version, or network | Use `registry.npmjs.org` and `0.5.3` |
+| npm `404` | Wrong registry, version, or network | Use `registry.npmjs.org` and `0.5.4` |
 | GTM `403` | Account lacks target access | Fix GTM permissions |
 | OAuth does not return to n8n | Incorrect redirect URI or consent setup | Use the URI shown by n8n |
 | Package disappears after restart | Declarative list does not contain it | Restore the `N8N_COMMUNITY_PACKAGES` entry |

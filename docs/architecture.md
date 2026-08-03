@@ -23,7 +23,7 @@ Google Tag Manager API v2 through OAuth
 The public runtime package is:
 
 ```text
-@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.3
+@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.4
 ```
 
 The package uses the official public npm registry:
@@ -72,7 +72,7 @@ The managed package list is authoritative:
 
 ```dotenv
 N8N_COMMUNITY_PACKAGES_MANAGED_BY_ENV=true
-N8N_COMMUNITY_PACKAGES=[{"name":"@ninjadatabuilder/n8n-nodes-google-tag-manager","version":"0.5.3"}]
+N8N_COMMUNITY_PACKAGES=[{"name":"@ninjadatabuilder/n8n-nodes-google-tag-manager","version":"0.5.4"}]
 ```
 
 Changing the list to `[]` and restarting the sandbox removes the package. Restoring the pinned entry and restarting reinstalls it. This behavior must not be tested against a production volume.

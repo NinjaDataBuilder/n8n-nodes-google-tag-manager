@@ -2,7 +2,7 @@
 
 Este documento é o procedimento operacional para instalar, validar, atualizar, remover e reinstalar o package no n8n self-hosted.
 
-> ✅ Package público: `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.3`
+> ✅ Package público: `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.4`
 >
 > ⚠️ Não use este procedimento no n8n Cloud: Community Nodes não verificados não estão disponíveis lá.
 
@@ -35,7 +35,7 @@ Settings → Community Nodes → Install
 Informe:
 
 ```text
-@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.3
+@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.4
 ```
 
 Não instale sem versão em produção.
@@ -48,7 +48,7 @@ Se o n8n solicitar restart, faça-o somente com backup e rollback disponíveis.
 
 ### 4. Confirme a instalação
 
-Em **Settings → Community Nodes**, confira `0.5.3`. No editor, pesquise `Google Tag Manager` e confirme:
+Em **Settings → Community Nodes**, confira `0.5.4`. No editor, pesquise `Google Tag Manager` e confirme:
 
 - Google Tag Manager;
 - Google Tag Manager Editor;
@@ -66,7 +66,7 @@ N8N_COMMUNITY_PACKAGES_MANAGED_BY_ENV=true
 N8N_COMMUNITY_PACKAGES_ENABLED=true
 N8N_UNVERIFIED_PACKAGES_ENABLED=true
 N8N_COMMUNITY_PACKAGES_REGISTRY=https://registry.npmjs.org
-N8N_COMMUNITY_PACKAGES=[{"name":"@ninjadatabuilder/n8n-nodes-google-tag-manager","version":"0.5.3"}]
+N8N_COMMUNITY_PACKAGES=[{"name":"@ninjadatabuilder/n8n-nodes-google-tag-manager","version":"0.5.4"}]
 ```
 
 Em um `docker-compose.yml`, preserve o JSON como uma string válida. Valide antes de recriar:
@@ -193,7 +193,7 @@ Esse comando destrói somente o estado descartável do sandbox quando executado 
 | Sintoma | Diagnóstico provável | Próxima ação |
 | --- | --- | --- |
 | Package não aparece | n8n não é self-hosted ou instalação está bloqueada | Verifique tipo de instância e política de Community Nodes |
-| `404` no npm | Registry, versão ou rede incorretos | Use `registry.npmjs.org` e `0.5.3` |
+| `404` no npm | Registry, versão ou rede incorretos | Use `registry.npmjs.org` e `0.5.4` |
 | `403` no GTM | Conta sem acesso ao account/container | Corrija a permissão dentro do GTM |
 | OAuth não volta ao n8n | Redirect URI ou consentimento incorreto | Use a URI apresentada pelo n8n |
 | Package desaparece após restart | Lista declarativa não contém o package | Restaure a entrada em `N8N_COMMUNITY_PACKAGES` |

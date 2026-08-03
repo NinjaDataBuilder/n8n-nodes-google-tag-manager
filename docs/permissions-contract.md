@@ -160,7 +160,7 @@ The API layer must define typed request builders by role. A write request requir
 - **Publisher:** implemented with a separate OAuth credential and bounded preview/version/publication operations. Require an explicit version ID, reviewed workspace state, confirmation, and redacted audit output. Publication is never scheduled automatically.
 - **Admin:** implemented as a separate bounded role for account/container administration. Access-management and destructive variants remain outside the standard Admin credential and require a separate security review.
 
-The public npm package is `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.3`, and `0.5.3` is the current `latest` release on the official npm registry.
+The public npm package is `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.4`, and `0.5.4` is the current `latest` release on the official npm registry.
 
 ## Rollout order
 

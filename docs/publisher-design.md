@@ -2,7 +2,7 @@
 
 ## Status
 
-**Implemented in the public package `0.5.3`.** The separate Publisher credential and bounded Publisher node are designed for controlled staging validation by each adopter. The implementation validates quick-preview compiler/sync status before Create Version, verifies returned version and replacement workspace identifiers, verifies the published live version, and returns redacted normalized summaries rather than complete unpublished GTM configuration. The GTM API's `containerVersionId` response field is accepted alongside `versionId`. Do not treat package installation as proof that a particular n8n instance or GTM account has been live-validated.
+**Implemented in the public package `0.5.4`.** The separate Publisher credential and bounded Publisher node are designed for controlled staging validation by each adopter. The implementation validates quick-preview compiler/sync status before Create Version, verifies returned version and replacement workspace identifiers, verifies the published live version, and returns redacted normalized summaries rather than complete unpublished GTM configuration. The GTM API's `containerVersionId` response field is accepted alongside `versionId`. Do not treat package installation as proof that a particular n8n instance or GTM account has been live-validated.
 
 ## Purpose
 
