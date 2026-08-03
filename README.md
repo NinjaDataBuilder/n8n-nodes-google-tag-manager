@@ -2,7 +2,7 @@
 
 Bounded Google Tag Manager API v2 nodes with separate OAuth credentials for **self-hosted n8n**.
 
-> ✅ **Published package:** `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.2`
+> ✅ **Published package:** `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.3`
 >
 > ⚠️ **Important:** this is an unverified community node. It is intended for self-hosted n8n. Unverified community nodes are not available on n8n Cloud.
 
@@ -30,13 +30,13 @@ Each role has its own credential type and OAuth scope boundary. The node exposes
 ## Five-minute safe start
 
 1. Use a self-hosted n8n instance and install the package from **Settings → Community Nodes**.
-2. Pin the package to `0.5.2` in staging.
+2. Pin the package to `0.5.3` in staging.
 3. Create the **Read Only** credential in n8n's credential screen.
 4. Run one account/container read operation with a manual workflow.
 5. Only after that, consider Editor, Publisher, or Admin in separate workflows and credentials.
 
 ```text
-@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.2
+@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.3
 ```
 
 Do not put OAuth client secrets, refresh tokens, access tokens, passwords, or customer data in workflow fields, Data Tables, source code, Git, screenshots, or chat.

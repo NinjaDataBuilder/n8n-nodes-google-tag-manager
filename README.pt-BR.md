@@ -2,7 +2,7 @@
 
 Nodes delimitados da API v2 do Google Tag Manager e credenciais OAuth separadas por papel para **n8n self-hosted**.
 
-> ✅ **Sim, qualquer pessoa pode instalar:** o package público é `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.2`.
+> ✅ **Sim, qualquer pessoa pode instalar:** o package público é `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.3`.
 >
 > ⚠️ **Limite importante:** este é um Community Node não verificado. O caminho suportado é n8n self-hosted; Community Nodes não verificados não ficam disponíveis no n8n Cloud.
 
@@ -58,7 +58,7 @@ A instalação pela interface exige Owner ou Admin e está disponível em n8n se
 Cole exatamente:
 
 ```text
-@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.2
+@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.3
 ```
 
 Fixar a versão evita que uma atualização futura altere o comportamento sem revisão.
@@ -78,7 +78,7 @@ No editor, pesquise por `Google Tag Manager` e confirme a presença de:
 - `Google Tag Manager Publisher`;
 - `Google Tag Manager Admin`.
 
-Em **Settings → Community Nodes**, confirme a versão `0.5.2`.
+Em **Settings → Community Nodes**, confirme a versão `0.5.3`.
 
 ## Instalação por Docker ou ambiente
 
@@ -89,7 +89,7 @@ N8N_COMMUNITY_PACKAGES_MANAGED_BY_ENV=true
 N8N_COMMUNITY_PACKAGES_ENABLED=true
 N8N_UNVERIFIED_PACKAGES_ENABLED=true
 N8N_COMMUNITY_PACKAGES_REGISTRY=https://registry.npmjs.org
-N8N_COMMUNITY_PACKAGES=[{"name":"@ninjadatabuilder/n8n-nodes-google-tag-manager","version":"0.5.2"}]
+N8N_COMMUNITY_PACKAGES=[{"name":"@ninjadatabuilder/n8n-nodes-google-tag-manager","version":"0.5.3"}]
 ```
 
 Depois, recrie ou reinicie os serviços n8n conforme a arquitetura: editor, worker, webhook e runners quando existirem.
@@ -206,7 +206,7 @@ Admin é para administração delimitada de conta/container. Não deve ser a cre
 - Não instale primeiro em produção.
 - Não use n8n Cloud esperando suporte a este Community Node não verificado.
 - Não instale sem backup e sem rollback.
-- Não use `latest` em produção; fixe `@0.5.2`.
+- Não use `latest` em produção; fixe `@0.5.3`.
 - Não coloque secrets em campos do workflow, Data Tables, Git, logs ou screenshots.
 - Não reutilize a credencial Admin no Publisher.
 - Não reutilize a credencial Publisher no Editor.
@@ -256,7 +256,7 @@ Use isso somente no projeto e volume dedicados ao sandbox. O comando destrói o 
 | Sintoma | Causa provável | Ação segura |
 | --- | --- | --- |
 | Package não aparece | Instância não é self-hosted, instalação desabilitada ou restart pendente | Verifique Community Nodes, política da instância e logs do n8n |
-| `404` no package | Registry, versão ou rede incorretos | Use npm oficial e a versão `0.5.2`; não publique novamente a mesma versão |
+| `404` no package | Registry, versão ou rede incorretos | Use npm oficial e a versão `0.5.3`; não publique novamente a mesma versão |
 | `403` no GTM | Usuário Google sem acesso ao account/container | Corrija a permissão no GTM; não amplie escopo automaticamente |
 | OAuth não conclui | Redirect URI ou consentimento incorreto | Use a redirect URI mostrada pelo n8n e não envie secrets no chat |
 | Node carrega, mas operação falha | IDs, workspace ou payload inválidos | Faça Read, revise IDs e teste em draft |

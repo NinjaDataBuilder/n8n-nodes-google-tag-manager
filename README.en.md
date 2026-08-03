@@ -2,7 +2,7 @@
 
 Bounded Google Tag Manager API v2 nodes and role-separated OAuth credentials for **self-hosted n8n**.
 
-> ✅ **Yes, people can install it:** the public package is `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.2`.
+> ✅ **Yes, people can install it:** the public package is `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.3`.
 >
 > ⚠️ **Important:** this is an unverified community node. The supported target is self-hosted n8n. Unverified community nodes are not available on n8n Cloud.
 
@@ -60,7 +60,7 @@ GUI installation requires Owner or Admin permissions and is available on self-ho
 Use exactly:
 
 ```text
-@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.2
+@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.3
 ```
 
 Pinning avoids silently changing behavior when a future version is released.
@@ -80,7 +80,7 @@ Search for `Google Tag Manager` in the editor and confirm:
 - `Google Tag Manager Publisher`;
 - `Google Tag Manager Admin`.
 
-Open **Settings → Community Nodes** and confirm version `0.5.2`.
+Open **Settings → Community Nodes** and confirm version `0.5.3`.
 
 ## Install through Docker or environment management
 
@@ -91,7 +91,7 @@ N8N_COMMUNITY_PACKAGES_MANAGED_BY_ENV=true
 N8N_COMMUNITY_PACKAGES_ENABLED=true
 N8N_UNVERIFIED_PACKAGES_ENABLED=true
 N8N_COMMUNITY_PACKAGES_REGISTRY=https://registry.npmjs.org
-N8N_COMMUNITY_PACKAGES=[{"name":"@ninjadatabuilder/n8n-nodes-google-tag-manager","version":"0.5.2"}]
+N8N_COMMUNITY_PACKAGES=[{"name":"@ninjadatabuilder/n8n-nodes-google-tag-manager","version":"0.5.3"}]
 ```
 
 Recreate or restart the n8n services according to your architecture: editor, worker, webhook, and runners when present.
@@ -208,7 +208,7 @@ Admin is for bounded account/container administration. It should not be the defa
 - Do not install in production first.
 - Do not use n8n Cloud expecting an unverified community node to work.
 - Do not install without a backup and rollback path.
-- Do not use `latest` in production; pin `@0.5.2`.
+- Do not use `latest` in production; pin `@0.5.3`.
 - Do not put secrets in workflow fields, Data Tables, Git, logs, or screenshots.
 - Do not reuse the Admin credential for Publisher.
 - Do not reuse the Publisher credential for Editor.
@@ -258,7 +258,7 @@ Use this only in the dedicated sandbox project and volume. It destroys the dispo
 | Symptom | Likely cause | Safe action |
 | --- | --- | --- |
 | Package does not appear | Not self-hosted, installation disabled, or restart pending | Check Community Nodes policy and n8n logs |
-| Package returns `404` | Wrong registry, version, or network | Use npm official and `0.5.2`; do not republish the same version |
+| Package returns `404` | Wrong registry, version, or network | Use npm official and `0.5.3`; do not republish the same version |
 | GTM returns `403` | Google user lacks account/container access | Fix GTM permissions; do not widen scopes automatically |
 | OAuth does not complete | Incorrect redirect URI or consent configuration | Use the URI shown by n8n; never share secrets in chat |
 | Node loads but operation fails | Invalid IDs, workspace, or payload | Run Read, review IDs, and test in draft |
