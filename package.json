@@ -1,0 +1,69 @@
+{
+  "name": "@ninjadatabuilder/n8n-nodes-google-tag-manager",
+  "version": "0.5.2",
+  "description": "Bounded Google Tag Manager API v2 nodes and role-separated credentials for n8n",
+  "license": "MIT",
+  "private": false,
+  "author": "NinjaDataBuilder",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NinjaDataBuilder/n8n-nodes-google-tag-manager.git"
+  },
+  "homepage": "https://github.com/NinjaDataBuilder/n8n-nodes-google-tag-manager#readme",
+  "bugs": {
+    "url": "https://github.com/NinjaDataBuilder/n8n-nodes-google-tag-manager/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "n8n-community-node-package",
+    "google-tag-manager",
+    "gtm",
+    "ninjadatabuilder"
+  ],
+  "main": "dist/nodes/GoogleTagManager/GoogleTagManager.node.js",
+  "scripts": {
+    "build": "tsc && cp nodes/GoogleTagManager/google-tag-manager-v2.svg dist/nodes/GoogleTagManager/google-tag-manager-v2.svg && cp nodes/GoogleTagManager/google-tag-manager-v2.svg dist/nodes/GoogleTagManagerEditor/google-tag-manager-v2.svg && cp nodes/GoogleTagManager/google-tag-manager-v2.svg dist/nodes/GoogleTagManagerPublisher/google-tag-manager-v2.svg && cp nodes/GoogleTagManager/google-tag-manager-v2.svg dist/nodes/GoogleTagManagerAdmin/google-tag-manager-v2.svg && cp nodes/GoogleTagManager/google-tag-manager-v2.svg dist/credentials/google-tag-manager-v2.svg && cp nodes/GoogleTagManager/google-tag-manager.svg dist/nodes/GoogleTagManager/google-tag-manager.svg && cp nodes/GoogleTagManager/google-tag-manager.svg dist/credentials/google-tag-manager.svg",
+    "test": "npm run build && node --test dist/test/gtmApi.test.js",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "files": [
+    "dist/credentials",
+    "dist/nodes",
+    "dist/src",
+    "docs/installation.en.md",
+    "docs/installation.pt-BR.md",
+    "docs/permissions-contract.md",
+    "CONTRIBUTING.md",
+    "LICENSE",
+    "README.en.md",
+    "README.md",
+    "README.pt-BR.md",
+    "SECURITY.md"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/GoogleTagManagerOAuth2.credentials.js",
+      "dist/credentials/GoogleTagManagerEditorOAuth2.credentials.js",
+      "dist/credentials/GoogleTagManagerPublisherOAuth2.credentials.js",
+      "dist/credentials/GoogleTagManagerAdminOAuth2.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/GoogleTagManager/GoogleTagManager.node.js",
+      "dist/nodes/GoogleTagManagerEditor/GoogleTagManagerEditor.node.js",
+      "dist/nodes/GoogleTagManagerPublisher/GoogleTagManagerPublisher.node.js",
+      "dist/nodes/GoogleTagManagerAdmin/GoogleTagManagerAdmin.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.2",
+    "n8n-workflow": "*",
+    "typescript": "^5.8.0"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
+}

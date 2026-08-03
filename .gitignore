@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+coverage/
+.n8n/
+.hermes/
+packages/installer/
+*.log
+*.tgz
+.DS_Store
