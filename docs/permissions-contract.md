@@ -155,19 +155,21 @@ The API layer must define typed request builders by role. A write request requir
 
 ## Implementation status
 
-- **Read:** implemented, packaged, installed, and live-validated against the intended GTM account and container inventory.
-- **Editor:** implemented in v0.2.0 with a separate OAuth credential, allow-listed create/update operations, confirmation requirement, local tests, and installed metadata. Controlled live smoke tests have validated `Workspace → create`, `Folder → create`, an unreferenced constant `Variable → create`, and an unreferenced custom-event `Trigger → create`, and a paused no-op Custom HTML `Tag → create` in a dedicated draft workspace with no publication. A `Variable → update` using the fingerprint read immediately before the write has also passed controlled live validation; it changed only the audit note while preserving the constant value, type, and folder.
-- **Publisher:** the separate OAuth credential and bounded v0.5.1 node are installed and validated on the target n8n instance for the previously approved read/status and lifecycle surface. Package 0.5.1 adds quick-preview compiler/sync validation, rejects missing version IDs and unexpected replacement workspaces, treats empty merge-conflict arrays as healthy, verifies the live version after publication, and emits only redacted normalized output. The GTM API's `containerVersionId` response field remains supported.
-- **Admin:** implemented as the bounded Admin role introduced in `v0.5.0` and carried by installed package `v0.5.1`, with a separate OAuth credential. The initial surface is `Account → update`, `Container → create`, and `Container → update`, with explicit confirmation and fingerprint support for updates. The Admin credential instance and controlled live validation remain pending in the n8n UI; access-management and destructive Admin variants remain deferred.
+- **Read:** implemented and included in the public package. It is intended for inventory, audit, diagnostics, and approval preparation.
+- **Editor:** implemented with a separate OAuth credential, allow-listed draft create/update operations, confirmation requirements, and fingerprint-aware updates. Keep changes inside an explicitly selected draft workspace.
+- **Publisher:** implemented with a separate OAuth credential and bounded preview/version/publication operations. Require an explicit version ID, reviewed workspace state, confirmation, and redacted audit output. Publication is never scheduled automatically.
+- **Admin:** implemented as a separate bounded role for account/container administration. Access-management and destructive variants remain outside the standard Admin credential and require a separate security review.
+
+The public npm package is `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.2`. The next documentation-focused patch is being prepared as `0.5.3`; it is not published until the complete release validation is clean.
 
 ## Rollout order
 
-1. Keep Read live-validated with the existing read-only credential.
-2. Keep the Editor credential and create/update operations separated from Read; `Workspace → create`, `Folder → create`, an unreferenced constant `Variable → create`, an unreferenced custom-event `Trigger → create`, a paused no-op Custom HTML `Tag → create`, and a fingerprint-protected `Variable → update` have passed controlled live validation.
-3. Keep the Publisher credential and lifecycle operations separated from Editor; controlled version creation and publication have passed live validation.
-4. Install and live-validate Admin standard for create/update container and account metadata.
-5. Design Admin access management and destructive actions only after a dedicated security review.
-6. Add release automation, installation documentation, and public distribution only after role-level tests and a secret audit are clean.
+1. Start with Read in a disposable or staging instance.
+2. Add Editor only for named draft workflows with explicit confirmation.
+3. Add Publisher only after a reviewed draft and controlled preview/version test.
+4. Add standard Admin only after account/container targets and payloads have been independently reviewed.
+5. Keep user-permission and destructive Admin variants deferred until a dedicated security review.
+6. Publish a new package version only after tests, pack inspection, secret audit, documentation review, and sandbox reinstall validation are clean.
 
 ## Official references
 

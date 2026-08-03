@@ -1,79 +1,213 @@
 # Installation and operation — English
 
-This is the detailed reference for installing the package on self-hosted n8n.
+This is the operational procedure for installing, validating, upgrading, removing, and reinstalling the package on self-hosted n8n.
+
+> ✅ Public package: `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.2`
+>
+> ⚠️ Do not use this procedure on n8n Cloud: unverified community nodes are not available there.
 
 ## Before installation
 
-- confirm that the instance is self-hosted;
-- confirm that you are an Owner/Admin;
-- back up the n8n instance;
-- choose a pinned package version;
-- install in staging first;
-- confirm `N8N_COMMUNITY_PACKAGES_ENABLED=true`;
-- enable `N8N_UNVERIFIED_PACKAGES_ENABLED=true` only when required by your instance policy for packages that are not yet verified.
+Confirm all of the following:
 
-## UI installation
+- [ ] The instance is self-hosted.
+- [ ] You are an n8n Owner or Admin.
+- [ ] A recent backup and rollback path exist.
+- [ ] The package will be installed in staging first.
+- [ ] Outbound access to `https://registry.npmjs.org` is allowed.
+- [ ] You have Google Cloud access and a test GTM account/container.
+- [ ] No secret or customer data will be placed in chat, Git, or workflows.
 
-Use **Settings → Community Nodes → Install** and enter:
+The project reference environment was n8n `2.32.5`. Validate newer n8n releases in staging before production use.
+
+## Recommended path: UI installation
+
+### 1. Open the correct screen
+
+In n8n:
+
+```text
+Settings → Community Nodes → Install
+```
+
+### 2. Pin the version
+
+Enter:
 
 ```text
 @ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.2
 ```
 
-Accept the risk warning, install the package, and confirm that all four nodes are available. If installation fails, record the n8n error without copying tokens or secret environment variables.
+Do not use an unpinned package in production.
 
-## Environment-managed installation
+### 3. Accept the warning and wait
 
-Add these settings to n8n:
+Accept the unverified community-node warning and wait for n8n to finish.
 
-```bash
+If n8n requests a restart, do so only when backup and rollback are available.
+
+### 4. Verify the installation
+
+In **Settings → Community Nodes**, confirm `0.5.2`. In the editor, search for `Google Tag Manager` and confirm:
+
+- Google Tag Manager;
+- Google Tag Manager Editor;
+- Google Tag Manager Publisher;
+- Google Tag Manager Admin.
+
+The package appearing in the list is not enough: run the Read smoke test.
+
+## Reproducible path: Docker/environment
+
+Use these n8n settings:
+
+```dotenv
 N8N_COMMUNITY_PACKAGES_MANAGED_BY_ENV=true
 N8N_COMMUNITY_PACKAGES_ENABLED=true
 N8N_UNVERIFIED_PACKAGES_ENABLED=true
-N8N_COMMUNITY_PACKAGES='[{"name":"@ninjadatabuilder/n8n-nodes-google-tag-manager","version":"0.5.2"}]'
+N8N_COMMUNITY_PACKAGES_REGISTRY=https://registry.npmjs.org
+N8N_COMMUNITY_PACKAGES=[{"name":"@ninjadatabuilder/n8n-nodes-google-tag-manager","version":"0.5.2"}]
 ```
 
-Restart the services. n8n reconciles the package list at startup; packages not in the list may be removed.
-
-## Local tarball installation
-
-To validate a version before publishing to npm:
+In a `docker-compose.yml`, preserve the JSON as a valid string. Validate before recreating:
 
 ```bash
-npm ci
-npm test
-npm pack
+docker compose config --quiet
+docker compose up -d
 ```
 
-Install the tarball using the community-node mechanism documented for your n8n version. Prefer the UI or environment-managed installation for reproducible deployments.
+Then check readiness and logs:
 
-## Verification
+```bash
+curl -fsS http://127.0.0.1:5678/healthz/readiness
+docker compose logs --tail=200 n8n
+```
 
-1. Search for `Google Tag Manager` in the editor.
-2. Confirm the Read, Editor, Publisher, and Admin nodes.
-3. Create the Read credential in the n8n UI.
-4. Run an account/container read operation.
-5. Confirm that the output is redacted and bounded.
-6. Only then create write-capable credentials.
+Look for readiness and a package-install confirmation. A container being `Up` is not enough: the package must be installed and loaded.
 
-## Credentials
+> ⚠️ With `N8N_COMMUNITY_PACKAGES_MANAGED_BY_ENV=true`, the list is authoritative. Omitted packages may be removed at startup. Capture the existing list before enabling this mechanism.
 
-Enter OAuth values only in the n8n credential screen. Use one credential per role. Do not reuse the Admin credential for Publisher or the Publisher credential for Editor.
+### Optional checksum
 
-## Rollback
+When your n8n version supports the `checksum` field, you can also pin the npm-published checksum:
 
-- UI: uninstall the package and reinstall the previous version.
-- Environment-managed: restore the previous version in `N8N_COMMUNITY_PACKAGES` and restart.
-- Tarball: restore the previous package and restart the services.
-- After rollback, rerun the Read smoke test before enabling write workflows.
+```text
+sha512-3rZKyvCNvuFQew5J8APx7aDrXlkSpBqGzP1KgtgLqsJ3zeZnBEwavUkZLeesFbeBXkioqzE35irl6tZhTWyr9A==
+```
 
-## Limitations
+Do not use a registry token or custom registry for this public package.
 
-The package does not manage GTM users, delete containers, publish automatically, or expose a generic HTTP dispatcher. Admin and Publisher require named, manual workflows with explicit confirmation.
+## Google OAuth
+
+Configure OAuth in n8n's credential screen.
+
+1. Create or select the appropriate Google Cloud project.
+2. Configure the consent screen according to organization policy.
+3. Create a web-application OAuth client.
+4. Open the package credential in n8n.
+5. Copy the redirect URI shown by n8n.
+6. Register that URI in Google Cloud.
+7. Enter Client ID and Client Secret only in n8n's credential screen.
+8. Authorize with the Google account that has GTM access.
+9. Never put a token in a workflow or node input.
+
+If OAuth succeeds but GTM returns `403`, review the Google account's permission on the target account/container. OAuth approval does not replace GTM permissions.
+
+## Read smoke test
+
+1. Create a manual workflow.
+2. Add the `Google Tag Manager` node.
+3. Select `Google Tag Manager OAuth2 API - Read Only`.
+4. Run an account, container, or status read.
+5. Check the account and container IDs before executing.
+6. Confirm that the result contains no token, client secret, or unnecessary full configuration.
+7. Retain a redacted result for audit purposes.
+
+Only after this test should you move to Editor.
+
+## Roles and scopes
+
+| Role | Credential | Main scopes | First use |
+| --- | --- | --- | --- |
+| Read | `Google Tag Manager OAuth2 API - Read Only` | `tagmanager.readonly` | Inventory and audit |
+| Editor | `Google Tag Manager OAuth2 API - Editor` | `tagmanager.readonly`, `tagmanager.edit.containers` | Draft/workspace changes |
+| Publisher | `Google Tag Manager OAuth2 API - Publisher` | `tagmanager.readonly`, `tagmanager.edit.containerversions`, `tagmanager.publish` | Preview and explicit publication |
+| Admin | `Google Tag Manager OAuth2 API - Admin` | `tagmanager.readonly`, `tagmanager.edit.containers`, `tagmanager.manage.accounts` | Bounded administration |
+
+Use one credential per role. Do not use Admin as a generic credential.
+
+## Adoption order
+
+```text
+Read → review state → Editor draft → review diff → Publisher preview/version → explicit publication
+```
+
+> ⚠️ **Create Version is not a preview:** it creates a real version, consumes the source workspace in GTM, and returns a replacement workspace. Review fingerprints, IDs, name, and impact before enabling confirmation.
+>
+> 🔴 **Literal publication confirmation:** set `Confirm Publish = true` and `Publish Confirmation = PUBLICAR {versionId}`. Example: `PUBLICAR 123456`. `PUBLISH 123456` is rejected.
+
+Keep write workflows manual and inactive until the payload has been reviewed. Do not schedule publication or expose Publisher/Admin as generic AI tools.
+
+## What not to do
+
+- Do not install in production first.
+- Do not use n8n Cloud.
+- Do not use `latest` in production.
+- Do not reuse credentials across roles.
+- Do not put secrets in workflows, Data Tables, Git, logs, or screenshots.
+- Do not publish without reviewing IDs, workspace, version ID, and target.
+- Do not assume OAuth grants sufficient GTM access.
+- Do not make arbitrary API calls.
+- Do not enable environment management without preserving existing packages.
+- Do not delete production volumes to solve a community-node installation issue.
+
+## Upgrade and rollback
+
+### UI
+
+1. Back up the instance.
+2. Test the new version in staging.
+3. Run Read.
+4. Open **Settings → Community Nodes**.
+5. Use **Options → Uninstall package** to remove the current version.
+6. Install the previous pinned version.
+7. Run Read again.
+
+### Environment
+
+Restore the previous version in `N8N_COMMUNITY_PACKAGES` and recreate only editor/worker/webhook/runners as required. Do not restart PostgreSQL or Redis for an unrelated package change.
+
+## Sandbox reinstall
+
+The sandbox must be separate from production, use SQLite, a dedicated volume, and a local-only binding. A full sandbox reset is:
+
+```bash
+docker compose down --volumes --remove-orphans
+docker compose up -d
+```
+
+This destroys only disposable sandbox state when run in the correct project directory. Never run it from the production Compose directory.
+
+## Troubleshooting
+
+| Symptom | Likely diagnosis | Next action |
+| --- | --- | --- |
+| Package does not appear | Instance is not self-hosted or installation is blocked | Check instance type and Community Nodes policy |
+| npm `404` | Wrong registry, version, or network | Use `registry.npmjs.org` and `0.5.2` |
+| GTM `403` | Account lacks target access | Fix GTM permissions |
+| OAuth does not return to n8n | Incorrect redirect URI or consent setup | Use the URI shown by n8n |
+| Package disappears after restart | Declarative list does not contain it | Restore the `N8N_COMMUNITY_PACKAGES` entry |
+| n8n does not start | Invalid environment/JSON | Restore the previous env and validate Compose |
+| Node appears but fails | Invalid IDs, workspace, or payload | Run Read and test in draft |
+
+When collecting support logs, remove tokens, cookies, client secrets, private URLs, sensitive IDs, and customer data.
 
 ## References
 
-- [n8n documentation — GUI installation](https://docs.n8n.io/integrations/community-nodes/installation-and-management/gui-installation)
-- [n8n documentation — environment variable installation](https://docs.n8n.io/integrations/community-nodes/installation-and-management/environment-variable-installation)
-- [Português do Brasil README](../README.pt-BR.md)
 - [English README](../README.en.md)
+- [Português do Brasil](../README.pt-BR.md)
+- [Architecture and sandbox](architecture.md)
+- [Permission contract](permissions-contract.md)
+- [n8n GUI installation](https://docs.n8n.io/integrations/community-nodes/installation/gui-install)
+- [n8n environment variable installation](https://docs.n8n.io/integrations/community-nodes/installation/environment-variable-installation)
+- [Google Tag Manager API v2](https://developers.google.com/tag-platform/tag-manager/api/v2)

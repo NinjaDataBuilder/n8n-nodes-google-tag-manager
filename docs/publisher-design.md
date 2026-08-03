@@ -2,7 +2,7 @@
 
 ## Status
 
-**Implemented, deployed, and live-validated on the target n8n VPS.** The separate Publisher credential and bounded Publisher node are installed as package version `0.5.1`. The dedicated Publisher OAuth credential passed a live `Workspace → Get status` check. The implementation validates quick-preview compiler/sync status before Create Version, verifies returned version and replacement workspace identifiers, verifies the published live version, and returns redacted normalized summaries rather than complete unpublished GTM configuration. The GTM API's `containerVersionId` response field is accepted alongside `versionId`.
+**Implemented in the public package `0.5.2`.** The separate Publisher credential and bounded Publisher node are designed for controlled staging validation by each adopter. The implementation validates quick-preview compiler/sync status before Create Version, verifies returned version and replacement workspace identifiers, verifies the published live version, and returns redacted normalized summaries rather than complete unpublished GTM configuration. The GTM API's `containerVersionId` response field is accepted alongside `versionId`. Do not treat package installation as proof that a particular n8n instance or GTM account has been live-validated.
 
 ## Purpose
 

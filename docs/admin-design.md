@@ -62,8 +62,8 @@ Account updates accept only `name` and the explicitly enabled `shareData` field.
 ## Deployment and live-test gate
 
 1. Build, test, audit, and inspect the compiled Admin metadata locally.
-2. Install the current package with a backup and checksum on the target n8n VPS.
-3. Confirm the Admin node and credential appear in the live catalog without `__CUSTOM_API_CALL__` or generic selectors.
+2. Install the pinned public package in the adopter's staging n8n instance with a backup and checksum.
+3. Confirm the Admin node and credential appear in that staging catalog without `__CUSTOM_API_CALL__` or generic selectors.
 4. Bind the dedicated Admin credential in n8n through the UI.
 5. Execute only a read/metadata verification first, then obtain explicit approval before any real container/account mutation.
 6. Keep all mutation workflows inactive/manual-only with `callerPolicy=none` after validation.
