@@ -2,9 +2,11 @@
 
 Bounded Google Tag Manager API v2 nodes and role-separated OAuth credentials for **self-hosted n8n**.
 
-> ✅ **Yes, people can install it:** the public package is `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.3`.
+> [!IMPORTANT]
+> The public package is available as `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.3`.
 >
-> ⚠️ **Important:** this is an unverified community node. The supported target is self-hosted n8n. Unverified community nodes are not available on n8n Cloud.
+> [!WARNING]
+> This is an unverified community node. The supported target is self-hosted n8n. Unverified community nodes are not available on n8n Cloud.
 
 ## Quick answer
 
@@ -39,7 +41,8 @@ You need:
 - a Google account with access to the target GTM account/container;
 - staging, backup, and rollback before production installation.
 
-> 🔒 **Secrets:** enter client secrets, refresh tokens, access tokens, and passwords only in n8n's credential screen. Never put them in workflows, Data Tables, Git, screenshots, issues, or chat.
+> [!WARNING]
+> Enter client secrets, refresh tokens, access tokens, and passwords only in n8n's credential screen. Never put them in workflows, Data Tables, Git, screenshots, issues, or chat.
 
 ## Install from the n8n UI
 
@@ -96,7 +99,8 @@ N8N_COMMUNITY_PACKAGES=[{"name":"@ninjadatabuilder/n8n-nodes-google-tag-manager"
 
 Recreate or restart the n8n services according to your architecture: editor, worker, webhook, and runners when present.
 
-> ⚠️ `N8N_COMMUNITY_PACKAGES_MANAGED_BY_ENV=true` makes the declared list authoritative. Packages previously installed through the UI and omitted from the list may be removed at startup. Inventory and preserve the existing list before enabling it.
+> [!CAUTION]
+> `N8N_COMMUNITY_PACKAGES_MANAGED_BY_ENV=true` makes the declared list authoritative. Packages previously installed through the UI and omitted from the list may be removed at startup. Inventory and preserve the existing list before enabling it.
 
 For additional supply-chain control, add the SHA-512 checksum published by npm. Do not use a custom npm registry for this public package.
 
@@ -179,9 +183,11 @@ Use this sequence:
 read state → review workspace → preview → create explicit version → review version → publish explicitly
 ```
 
-> ⚠️ **Create Version is not a preview:** it creates a real version, consumes the source workspace in GTM, and returns a replacement workspace. Run it only after reviewing fingerprints, IDs, name, and impact.
+> [!WARNING]
+> **Create Version is not a preview.** It creates a real version, consumes the source workspace in GTM, and returns a replacement workspace. Run it only after reviewing fingerprints, IDs, name, and impact.
 >
-> 🔴 **Publication requires a literal confirmation:** set `Confirm Publish = true` and enter exactly `PUBLICAR {versionId}`. Example: `PUBLICAR 123456`. `PUBLISH 123456` is rejected.
+> [!CAUTION]
+> Publication requires a literal confirmation: set `Confirm Publish = true` and enter exactly `PUBLICAR {versionId}`. Example: `PUBLICAR 123456`. `PUBLISH 123456` is rejected.
 
 Do not schedule publication or expose Publisher as a generic AI tool.
 

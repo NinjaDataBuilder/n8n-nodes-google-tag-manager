@@ -2,9 +2,11 @@
 
 Nodes delimitados da API v2 do Google Tag Manager e credenciais OAuth separadas por papel para **n8n self-hosted**.
 
-> ✅ **Sim, qualquer pessoa pode instalar:** o package público é `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.3`.
+> [!IMPORTANT]
+> O package público está disponível como `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.3`.
 >
-> ⚠️ **Limite importante:** este é um Community Node não verificado. O caminho suportado é n8n self-hosted; Community Nodes não verificados não ficam disponíveis no n8n Cloud.
+> [!WARNING]
+> Este é um Community Node não verificado. O caminho suportado é n8n self-hosted; Community Nodes não verificados não ficam disponíveis no n8n Cloud.
 
 ## Resposta rápida
 
@@ -37,7 +39,8 @@ Cada papel possui credencial e escopos OAuth próprios. O package usa uma lista 
 - uma conta Google com permissão no account/container GTM desejado;
 - staging, backup e rollback antes de instalar em produção.
 
-> 🔒 **Segredos:** client secret, refresh token, access token e senha devem ser digitados somente na tela de credenciais do n8n. Nunca os coloque em workflow, Data Table, Git, screenshot, issue ou chat.
+> [!WARNING]
+> Client secret, refresh token, access token e senha devem ser digitados somente na tela de credenciais do n8n. Nunca os coloque em workflow, Data Table, Git, screenshot, issue ou chat.
 
 ## Instalação pela interface do n8n
 
@@ -94,7 +97,8 @@ N8N_COMMUNITY_PACKAGES=[{"name":"@ninjadatabuilder/n8n-nodes-google-tag-manager"
 
 Depois, recrie ou reinicie os serviços n8n conforme a arquitetura: editor, worker, webhook e runners quando existirem.
 
-> ⚠️ `N8N_COMMUNITY_PACKAGES_MANAGED_BY_ENV=true` torna a lista declarativa autoritativa. Packages instalados anteriormente pela UI e ausentes da lista podem ser removidos no startup. Preserve a lista existente antes de habilitar esse modo.
+> [!CAUTION]
+> `N8N_COMMUNITY_PACKAGES_MANAGED_BY_ENV=true` torna a lista declarativa autoritativa. Packages instalados anteriormente pela UI e ausentes da lista podem ser removidos no startup. Preserve a lista existente antes de habilitar esse modo.
 
 Para controle adicional, use também o checksum SHA-512 publicado no registry. Não use registry npm customizado neste package público.
 
@@ -177,9 +181,11 @@ O fluxo deve ser:
 ler estado → revisar workspace → preview → criar versão explícita → revisar versão → publicar explicitamente
 ```
 
-> ⚠️ **Create Version não é preview:** ele cria uma versão real, consome o workspace de origem no GTM e retorna um novo workspace. Só execute depois de revisar fingerprint, IDs, nome e impacto.
+> [!WARNING]
+> **Create Version não é preview.** Ele cria uma versão real, consome o workspace de origem no GTM e retorna um novo workspace. Só execute depois de revisar fingerprint, IDs, nome e impacto.
 >
-> 🔴 **Publicação exige texto literal:** preencha `Confirm Publish = true` e escreva exatamente `PUBLICAR {versionId}`. Exemplo: `PUBLICAR 123456`. `PUBLISH 123456` não é aceito.
+> [!CAUTION]
+> Publicação exige texto literal: preencha `Confirm Publish = true` e escreva exatamente `PUBLICAR {versionId}`. Exemplo: `PUBLICAR 123456`. `PUBLISH 123456` não é aceito.
 
 Não agende publicação e não use Publisher como ferramenta genérica de IA.
 
