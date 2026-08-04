@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you for helping improve the NinjaDataBuilder Google Tag Manager nodes.
+Thank you for helping improve the **NinjaDataBuilder™** Google Tag Manager nodes.
 
 ## Before opening a pull request
 

@@ -1,16 +1,16 @@
-# 🏷️ NinjaDataBuilder Google Tag Manager for n8n
+# 🏷️ **NinjaDataBuilder™** Google Tag Manager for n8n
 
 [![npm version](https://img.shields.io/npm/v/%40ninjadatabuilder%2Fn8n-nodes-google-tag-manager?label=npm)](https://www.npmjs.com/package/@ninjadatabuilder/n8n-nodes-google-tag-manager)
 [![npm downloads](https://img.shields.io/npm/dm/%40ninjadatabuilder%2Fn8n-nodes-google-tag-manager?label=downloads)](https://www.npmjs.com/package/@ninjadatabuilder/n8n-nodes-google-tag-manager)
 [![License](https://img.shields.io/npm/l/%40ninjadatabuilder%2Fn8n-nodes-google-tag-manager?label=license)](LICENSE)
 [![n8n](https://img.shields.io/badge/n8n-self--hosted-EA4B71?logo=n8n&logoColor=white)](https://n8n.io/)
 [![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-API%20v2-4285F4?logo=google&logoColor=white)](https://developers.google.com/tag-platform/tag-manager/api/v2)
-[![Version](https://img.shields.io/badge/version-0.5.4-4c1)](https://www.npmjs.com/package/@ninjadatabuilder/n8n-nodes-google-tag-manager)
+[![Version](https://img.shields.io/badge/version-0.5.5-4c1)](https://www.npmjs.com/package/@ninjadatabuilder/n8n-nodes-google-tag-manager)
 
 Role-separated, bounded Google Tag Manager API v2 nodes and OAuth credentials for **self-hosted n8n**.
 
 > [!IMPORTANT]
-> The public package is available as `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.4`. Pin the version in production and validate the package in staging first.
+> The public package is available as `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.5`. Pin the version in production and validate the package in staging first.
 
 > [!WARNING]
 > This is an **unverified community node**. It is intended for self-hosted n8n; unverified community nodes are not available on n8n Cloud.
@@ -48,7 +48,7 @@ It does **not** expose an arbitrary HTTP method/path/payload dispatcher.
 2. Install the pinned package from **Settings → Community Nodes → Install**:
 
    ```text
-   @ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.4
+   @ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.5
    ```
 
 3. Create the Read credential in the n8n credential screen.
@@ -104,7 +104,7 @@ N8N_COMMUNITY_PACKAGES_MANAGED_BY_ENV=true
 N8N_COMMUNITY_PACKAGES_ENABLED=true
 N8N_UNVERIFIED_PACKAGES_ENABLED=true
 N8N_COMMUNITY_PACKAGES_REGISTRY=https://registry.npmjs.org
-N8N_COMMUNITY_PACKAGES=[{"name":"@ninjadatabuilder/n8n-nodes-google-tag-manager","version":"0.5.4"}]
+N8N_COMMUNITY_PACKAGES=[{"name":"@ninjadatabuilder/n8n-nodes-google-tag-manager","version":"0.5.5"}]
 ```
 
 Restart the editor, worker, webhook, and runners according to your architecture.
@@ -167,7 +167,7 @@ Restore the previous `N8N_COMMUNITY_PACKAGES` entry and restart only the affecte
 | Symptom | Likely cause | Safe action |
 | --- | --- | --- |
 | Package does not appear | Installation disabled, restart pending, or unsupported n8n target | Check Community Nodes policy and n8n logs |
-| npm returns `404` | Wrong registry, version, or network | Use the official registry and pinned `0.5.4` |
+| npm returns `404` | Wrong registry, version, or network | Use the official registry and pinned `0.5.5` |
 | GTM returns `403` | Google user lacks account/container access | Fix GTM permissions; do not widen scopes automatically |
 | OAuth does not complete | Incorrect redirect URI or consent configuration | Use the redirect URI shown by n8n |
 | Node loads but operation fails | Invalid IDs, workspace, or payload | Run Read, review IDs, and test in draft |

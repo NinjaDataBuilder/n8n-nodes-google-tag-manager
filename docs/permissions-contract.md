@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document defines the authorization and operational-safety contract for the NinjaDataBuilder Google Tag Manager n8n community node.
+This document defines the authorization and operational-safety contract for the **NinjaDataBuilder™** Google Tag Manager n8n community node.
 
 It keeps the package client-neutral and separates OAuth consent from the operations that the node and reusable n8n workflows expose. A Google OAuth scope is a technical ceiling, not permission to expose every API method in the product.
 
@@ -160,7 +160,7 @@ The API layer must define typed request builders by role. A write request requir
 - **Publisher:** implemented with a separate OAuth credential and bounded preview/version/publication operations. Require an explicit version ID, reviewed workspace state, confirmation, and redacted audit output. Publication is never scheduled automatically.
 - **Admin:** implemented as a separate bounded role for account/container administration. Access-management and destructive variants remain outside the standard Admin credential and require a separate security review.
 
-The public npm package is `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.4`, and `0.5.4` is the current `latest` release on the official npm registry.
+The public npm package is `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.5`, and `0.5.5` is the current `latest` release on the official npm registry.
 
 ## Rollout order
 

@@ -6,7 +6,7 @@ Security fixes target the latest published version and the active development br
 
 ## Reporting a vulnerability
 
-Do not open a public issue for a suspected vulnerability. Contact the maintainers privately through the security contact configured in the repository or the NinjaDataBuilder maintainers.
+Do not open a public issue for a suspected vulnerability. Contact the maintainers privately through the security contact configured in the repository or the **NinjaDataBuilder™** maintainers.
 
 Please include:
 
