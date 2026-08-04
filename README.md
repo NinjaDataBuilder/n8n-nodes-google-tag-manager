@@ -176,8 +176,8 @@ Restore the previous `N8N_COMMUNITY_PACKAGES` entry and restart only the affecte
 
 ## 📚 Documentation
 
-- [Português do Brasil — guia completo](README.pt-BR.md)
-- [English — complete guide](README.en.md)
+- [Português do Brasil — guia completo](https://github.com/NinjaDataBuilder/n8n-nodes-google-tag-manager/blob/main/docs/README.pt-BR.md)
+- [English — complete guide](https://github.com/NinjaDataBuilder/n8n-nodes-google-tag-manager/blob/main/docs/README.en.md)
 - [Installation reference — Português](docs/installation.pt-BR.md)
 - [Installation reference — English](docs/installation.en.md)
 - [Permission contract](docs/permissions-contract.md)

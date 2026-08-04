@@ -204,8 +204,8 @@ When collecting support logs, remove tokens, cookies, client secrets, private UR
 
 ## References
 
-- [English README](../README.en.md)
-- [Português do Brasil](../README.pt-BR.md)
+- [English README](https://github.com/NinjaDataBuilder/n8n-nodes-google-tag-manager/blob/main/docs/README.en.md)
+- [Português do Brasil](https://github.com/NinjaDataBuilder/n8n-nodes-google-tag-manager/blob/main/docs/README.pt-BR.md)
 - [Architecture and sandbox](architecture.md)
 - [Permission contract](permissions-contract.md)
 - [n8n GUI installation](https://docs.n8n.io/integrations/community-nodes/installation/gui-install)

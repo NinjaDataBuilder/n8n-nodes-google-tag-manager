@@ -39,9 +39,7 @@
     "docs/permissions-contract.md",
     "CONTRIBUTING.md",
     "LICENSE",
-    "README.en.md",
     "README.md",
-    "README.pt-BR.md",
     "SECURITY.md"
   ],
   "n8n": {
