@@ -1,15 +1,15 @@
 # 🏷️ **NinjaDataBuilder™** Google Tag Manager for n8n
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/NinjaDataBuilder/n8n-nodes-google-tag-manager/main/docs/assets/github-header.png" alt="Google Tag Manager for n8n — bounded role-separated API v2 nodes" width="100%">
-</p>
-
 [![npm version](https://img.shields.io/npm/v/%40ninjadatabuilder%2Fn8n-nodes-google-tag-manager?label=npm)](https://www.npmjs.com/package/@ninjadatabuilder/n8n-nodes-google-tag-manager)
 [![npm downloads](https://img.shields.io/npm/dm/%40ninjadatabuilder%2Fn8n-nodes-google-tag-manager?label=downloads)](https://www.npmjs.com/package/@ninjadatabuilder/n8n-nodes-google-tag-manager)
 [![License](https://img.shields.io/npm/l/%40ninjadatabuilder%2Fn8n-nodes-google-tag-manager?label=license)](LICENSE)
 [![n8n](https://img.shields.io/badge/n8n-self--hosted-EA4B71?logo=n8n&logoColor=white)](https://n8n.io/)
 [![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-API%20v2-4285F4?logo=google&logoColor=white)](https://developers.google.com/tag-platform/tag-manager/api/v2)
 [![Version](https://img.shields.io/badge/version-0.5.5-4c1)](https://www.npmjs.com/package/@ninjadatabuilder/n8n-nodes-google-tag-manager)
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/NinjaDataBuilder/n8n-nodes-google-tag-manager/main/docs/assets/github-header.png" alt="Google Tag Manager for n8n — bounded role-separated API v2 nodes" width="100%">
+</p>
 
 Role-separated, bounded Google Tag Manager API v2 nodes and OAuth credentials for **self-hosted n8n**.
 
