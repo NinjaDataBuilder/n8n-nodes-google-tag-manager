@@ -46,6 +46,25 @@ The package exposes named, allow-listed n8n nodes for bounded GTM operations. It
 
 It does **not** expose an arbitrary HTTP method/path/payload dispatcher.
 
+## 🎬 Demonstration
+
+The screenshots below show a practical self-hosted n8n setup using the role-separated GTM nodes and credentials.
+
+### Creating a GTM container
+
+A manual workflow starts the one-time GTM Admin creation process, loads the centralized `Configuration` step, and creates a Sites RJ GTM container.
+
+![n8n workflow creating a Google Tag Manager container](https://raw.githubusercontent.com/NinjaDataBuilder/n8n-nodes-google-tag-manager/main/docs/assets/demo/gtm-workflow-create-container.png)
+
+### Role-separated GTM credentials
+
+The n8n credentials screen shows separate Google Tag Manager OAuth credentials for Admin, Publisher, Read Only, and Editor operations.
+
+![n8n credentials screen showing role-separated Google Tag Manager accounts](https://raw.githubusercontent.com/NinjaDataBuilder/n8n-nodes-google-tag-manager/main/docs/assets/demo/gtm-credentials-role-separation.png)
+
+> [!NOTE]
+> These screenshots are demonstrations of the workflow and credential structure. Do not publish credentials, tokens, account identifiers, or production data in screenshots or issue attachments.
+
 ## 🚀 Five-minute safe start
 
 1. Use a **self-hosted** n8n instance with Community Nodes enabled.
