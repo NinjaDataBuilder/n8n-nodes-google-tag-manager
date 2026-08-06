@@ -62,8 +62,14 @@ The n8n credentials screen shows separate Google Tag Manager OAuth credentials f
 
 ![n8n credentials screen showing role-separated Google Tag Manager accounts](https://raw.githubusercontent.com/NinjaDataBuilder/n8n-nodes-google-tag-manager/main/docs/assets/demo/gtm-credentials-role-separation.png)
 
+### Workflow video
+
+[▶️ Watch the variable smoke-test demonstration (MP4)](docs/assets/demo/gtm-variable-smoke-test.mp4)
+
+The 73-second demonstration shows a safe Editor workflow that reads existing variables, confirms the creation path, and creates a temporary GTM constant variable using values from the `Configuration` node.
+
 > [!NOTE]
-> These screenshots are demonstrations of the workflow and credential structure. Do not publish credentials, tokens, account identifiers, or production data in screenshots or issue attachments.
+> These screenshots and the video are demonstrations of the workflow and credential structure. Do not publish credentials, tokens, account identifiers, or production data in screenshots, recordings, or issue attachments.
 
 ## 🚀 Five-minute safe start
 
