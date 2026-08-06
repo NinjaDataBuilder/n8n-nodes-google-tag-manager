@@ -64,14 +64,14 @@ The n8n credentials screen shows separate Google Tag Manager OAuth credentials f
 
 ### Workflow video
 
-![Animated preview of the Google Tag Manager Editor variable smoke test](https://raw.githubusercontent.com/NinjaDataBuilder/n8n-nodes-google-tag-manager/main/docs/assets/demo/gtm-variable-smoke-test-preview.gif)
-
-[▶️ Open the full original demonstration video (MP4)](docs/assets/demo/gtm-variable-smoke-test.mp4)
+<video src="https://github.com/user-attachments/assets/e892e46d-b8ef-4f84-8d1a-de2565507837" controls width="100%" aria-label="Demonstração do Google Tag Manager Editor variable smoke test">
+  Seu navegador não conseguiu renderizar o vídeo. [Abrir a demonstração em vídeo](https://github.com/user-attachments/assets/e892e46d-b8ef-4f84-8d1a-de2565507837).
+</video>
 
 The 73-second demonstration shows a safe Editor workflow that reads existing variables, confirms the creation path, and creates a temporary GTM constant variable using values from the `Configuration` node.
 
 > [!NOTE]
-> These screenshots, the animated preview, and the full video are demonstrations of the workflow and credential structure. Do not publish credentials, tokens, account identifiers, or production data in screenshots, recordings, or issue attachments.
+> These screenshots, the inline video, and the full video are demonstrations of the workflow and credential structure. Do not publish credentials, tokens, account identifiers, or production data in screenshots, recordings, or issue attachments.
 
 ## 🚀 Five-minute safe start
 
