@@ -18,7 +18,7 @@ Confirme todos os itens:
 - [ ] Você possui acesso ao Google Cloud e ao account/container GTM de teste.
 - [ ] Nenhum secret ou dado de cliente será colocado no chat, no Git ou no workflow.
 
-A referência do projeto foi validada com n8n `2.32.5`. Versões mais novas devem ser validadas em staging antes do uso em produção.
+A referência do projeto foi validada com n8n `2.36.7` (versões mais novas também devem ser validadas em staging antes do uso em produção).
 
 ## Caminho recomendado: instalação pela UI
 

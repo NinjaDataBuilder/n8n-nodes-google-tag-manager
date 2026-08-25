@@ -18,7 +18,7 @@ Confirm all of the following:
 - [ ] You have Google Cloud access and a test GTM account/container.
 - [ ] No secret or customer data will be placed in chat, Git, or workflows.
 
-The project reference environment was n8n `2.32.5`. Validate newer n8n releases in staging before production use.
+The project reference environment was n8n `2.36.7` (also revalidate newer n8n releases in staging before production use).
 
 ## Recommended path: UI installation
 

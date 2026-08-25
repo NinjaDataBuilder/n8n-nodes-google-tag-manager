@@ -1,6 +1,6 @@
 {
   "name": "@ninjadatabuilder/n8n-nodes-google-tag-manager",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "description": "Bounded Google Tag Manager API v2 nodes and role-separated credentials for n8n",
   "license": "MIT",
   "private": false,
