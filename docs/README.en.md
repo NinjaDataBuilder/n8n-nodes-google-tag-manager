@@ -3,7 +3,7 @@
 Bounded Google Tag Manager API v2 nodes and role-separated OAuth credentials for **self-hosted n8n**.
 
 > [!IMPORTANT]
-> The public package is available as `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.5`.
+> The current release is `@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.6`, updated and validated for self-hosted n8n `2.36.7`. Previously stable validated packages remain available for n8n `2.35.3` (`0.5.5`) and n8n `2.32.5` (`0.5.3`).
 >
 > [!WARNING]
 > This is an unverified community node. The supported target is self-hosted n8n. Unverified community nodes are not available on n8n Cloud.
@@ -63,7 +63,7 @@ GUI installation requires Owner or Admin permissions and is available on self-ho
 Use exactly:
 
 ```text
-@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.5
+@ninjadatabuilder/n8n-nodes-google-tag-manager@0.5.6
 ```
 
 Pinning avoids silently changing behavior when a future version is released.
@@ -83,7 +83,7 @@ Search for `Google Tag Manager` in the editor and confirm:
 - `Google Tag Manager Publisher`;
 - `Google Tag Manager Admin`.
 
-Open **Settings → Community Nodes** and confirm version `0.5.5`.
+Open **Settings → Community Nodes** and confirm version `0.5.6`.
 
 ## Install through Docker or environment management
 
@@ -94,7 +94,7 @@ N8N_COMMUNITY_PACKAGES_MANAGED_BY_ENV=true
 N8N_COMMUNITY_PACKAGES_ENABLED=true
 N8N_UNVERIFIED_PACKAGES_ENABLED=true
 N8N_COMMUNITY_PACKAGES_REGISTRY=https://registry.npmjs.org
-N8N_COMMUNITY_PACKAGES=[{"name":"@ninjadatabuilder/n8n-nodes-google-tag-manager","version":"0.5.5"}]
+N8N_COMMUNITY_PACKAGES=[{"name":"@ninjadatabuilder/n8n-nodes-google-tag-manager","version":"0.5.6"}]
 ```
 
 Recreate or restart the n8n services according to your architecture: editor, worker, webhook, and runners when present.
@@ -214,7 +214,7 @@ Admin is for bounded account/container administration. It should not be the defa
 - Do not install in production first.
 - Do not use n8n Cloud expecting an unverified community node to work.
 - Do not install without a backup and rollback path.
-- Do not use `latest` in production; pin `@0.5.5`.
+- Do not use `latest` in production; pin `@0.5.6`.
 - Do not put secrets in workflow fields, Data Tables, Git, logs, or screenshots.
 - Do not reuse the Admin credential for Publisher.
 - Do not reuse the Publisher credential for Editor.
