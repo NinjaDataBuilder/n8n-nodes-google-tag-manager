@@ -14,7 +14,7 @@ export class GoogleTagManagerEditorOAuth2 implements ICredentialType {
   name = 'googleTagManagerEditorOAuth2Api';
   extends = ['googleOAuth2Api'];
   displayName = 'Google Tag Manager OAuth2 API - Editor';
-  icon: 'file:google-tag-manager-v2.svg' = 'file:google-tag-manager-v2.svg';
+  icon = 'file:google-tag-manager-v2.svg' as const;
   documentationUrl = 'https://developers.google.com/tag-platform/tag-manager/api/v2/authorization';
 
   properties: INodeProperties[] = [

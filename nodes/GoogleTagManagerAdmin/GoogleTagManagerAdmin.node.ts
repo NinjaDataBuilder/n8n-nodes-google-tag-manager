@@ -30,7 +30,7 @@ const operations = [
 
 const containerResources = { adminResource: ['container'] };
 const accountUpdate = { adminResource: ['account'], adminOperation: ['update'] };
-const containerCreate = { adminResource: ['container'], adminOperation: ['create'] };
+
 const containerChange = { adminResource: ['container'], adminOperation: ['create', 'update'] };
 const containerUpdate = { adminResource: ['container'], adminOperation: ['update'] };
 

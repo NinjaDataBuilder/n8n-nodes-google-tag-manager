@@ -150,7 +150,7 @@ function validatedAdvancedOptions(resource: EditorResource, value: unknown): IDa
   try {
     options = parseAdvancedOptions(value);
   } catch (error) {
-    throw new Error(`Invalid advancedOptions: ${error instanceof Error ? error.message : String(error)}`);
+    throw new Error(`Invalid advancedOptions: ${error instanceof Error ? error.message : String(error)}`, { cause: error });
   }
 
   const allowed = new Set(EDITOR_ADVANCED_FIELDS[resource]);
@@ -350,7 +350,7 @@ export function buildAdminPayload(resource: AdminResource, input: AdminPayloadIn
     try {
       parsed = typeof value === 'string' ? JSON.parse(value) : value;
     } catch (error) {
-      throw new Error(`${name} must be a JSON array of strings: ${error instanceof Error ? error.message : String(error)}`);
+      throw new Error(`${name} must be a JSON array of strings: ${error instanceof Error ? error.message : String(error)}`, { cause: error });
     }
     if (!Array.isArray(parsed) || parsed.some((entry) => typeof entry !== 'string')) {
       throw new Error(`${name} must be a JSON array of strings`);
