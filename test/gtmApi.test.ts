@@ -1,9 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import type { IExecuteFunctions } from 'n8n-workflow';
 import { GoogleTagManagerAdminOAuth2 } from '../credentials/GoogleTagManagerAdminOAuth2.credentials';
 import { GoogleTagManagerAdmin } from '../nodes/GoogleTagManagerAdmin/GoogleTagManagerAdmin.node';
 import { GoogleTagManagerPublisherOAuth2 } from '../credentials/GoogleTagManagerPublisherOAuth2.credentials';
 import { GoogleTagManagerPublisher, getContainerVersionId, normalizePublisherResult } from '../nodes/GoogleTagManagerPublisher/GoogleTagManagerPublisher.node';
+import { GoogleTagManagerEditor } from '../nodes/GoogleTagManagerEditor/GoogleTagManagerEditor.node';
 import {
   buildEditorPayload,
   buildEditorRequest,
@@ -14,6 +16,31 @@ import {
   hasPublisherBlockingStatus,
   requirePublisherPreviewConfirmation,
 } from '../src/gtmApi';
+
+test('rejects legacy Editor selector parameters before parameter defaults or provider access', async () => {
+  let providerCalls = 0;
+  const context = {
+    getInputData: () => [{ json: {} }],
+    getNode: () => ({ name: 'Legacy Editor', type: 'googleTagManagerEditor', typeVersion: 1, position: [0, 0], parameters: { resource: 'variable', operation: 'update', confirmDraftChange: true } }),
+    getNodeParameter: () => { throw new Error('Legacy defaults must not be read'); },
+    helpers: { requestOAuth2: async () => { providerCalls++; } },
+  } as unknown as IExecuteFunctions;
+  await assert.rejects(new GoogleTagManagerEditor().execute.call(context), /legacy resource\/operation selectors/);
+  assert.equal(providerCalls, 0);
+});
+
+test('renamed Editor selectors keep unconfirmed writes blocked before provider access', async () => {
+  let providerCalls = 0;
+  const parameters: Record<string, unknown> = { editorResource: 'variable', editorOperation: 'update', confirmDraftChange: false };
+  const context = {
+    getInputData: () => [{ json: {} }],
+    getNode: () => ({ name: 'Guarded Editor', type: 'googleTagManagerEditor', typeVersion: 1, position: [0, 0], parameters }),
+    getNodeParameter: (key: string) => parameters[key],
+    helpers: { requestOAuth2: async () => { providerCalls++; } },
+  } as unknown as IExecuteFunctions;
+  await assert.rejects(new GoogleTagManagerEditor().execute.call(context), /Confirm Draft Change/);
+  assert.equal(providerCalls, 0);
+});
 
 test('keeps the Admin credential scoped to account and container administration', () => {
   const credential = new GoogleTagManagerAdminOAuth2();
@@ -147,6 +174,14 @@ test('exposes only bounded Publisher operations and requires the Publisher crede
   assert.equal(acknowledgeWorkspaceConsumption?.default, false);
   assert.equal(confirmPublish?.default, false);
   assert.equal(publishConfirmation?.default, '');
+});
+
+test('keeps the Editor selectors outside n8n reserved Custom API Call names', () => {
+  const node = new GoogleTagManagerEditor();
+  assert.equal('usableAsTool' in node.description, false);
+  assert.equal(node.description.properties.some((property) => ['resource', 'operation'].includes(property.name)), false);
+  assert.equal(node.description.properties.some((property) => property.name === 'editorResource'), true);
+  assert.equal(node.description.properties.some((property) => property.name === 'editorOperation'), true);
 });
 
 test('builds the Publisher workspace status endpoint', () => {

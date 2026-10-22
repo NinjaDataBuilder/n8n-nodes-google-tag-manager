@@ -49,7 +49,7 @@ export class GoogleTagManagerEditor implements INodeType {
     properties: [
       {
         displayName: 'Resource',
-        name: 'resource',
+        name: 'editorResource',
         type: 'options',
         noDataExpression: true,
         options: resourceOptions,
@@ -57,7 +57,7 @@ export class GoogleTagManagerEditor implements INodeType {
       },
       {
         displayName: 'Operation',
-        name: 'operation',
+        name: 'editorOperation',
         type: 'options',
         noDataExpression: true,
         options: resourceOperations,
@@ -86,7 +86,7 @@ export class GoogleTagManagerEditor implements INodeType {
         default: '',
         required: true,
         description: 'Numeric GTM workspace ID to update',
-        displayOptions: { show: { resource: ['workspace'], operation: ['update'] } },
+        displayOptions: { show: { editorResource: ['workspace'], editorOperation: ['update'] } },
       },
       {
         displayName: 'Workspace ID',
@@ -95,7 +95,7 @@ export class GoogleTagManagerEditor implements INodeType {
         default: '',
         required: true,
         description: 'Numeric GTM workspace ID that contains the draft resource',
-        displayOptions: { show: { resource: nonWorkspaceResources } },
+        displayOptions: { show: { editorResource: nonWorkspaceResources } },
       },
       {
         displayName: 'Resource ID',
@@ -104,7 +104,7 @@ export class GoogleTagManagerEditor implements INodeType {
         default: '',
         required: true,
         description: 'Numeric ID of the tag, trigger, variable, or folder to update',
-        displayOptions: { show: { resource: nonWorkspaceResources, operation: ['update'] } },
+        displayOptions: { show: { editorResource: nonWorkspaceResources, editorOperation: ['update'] } },
       },
       {
         displayName: 'Name',
@@ -120,7 +120,7 @@ export class GoogleTagManagerEditor implements INodeType {
         type: 'string',
         default: '',
         description: 'Workspace description',
-        displayOptions: { show: { resource: ['workspace'] } },
+        displayOptions: { show: { editorResource: ['workspace'] } },
       },
       {
         displayName: 'Resource Type',
@@ -129,7 +129,7 @@ export class GoogleTagManagerEditor implements INodeType {
         default: '',
         required: true,
         description: 'Official GTM type, such as `html`, `customEvent`, or `v`',
-        displayOptions: { show: { resource: typedResources } },
+        displayOptions: { show: { editorResource: typedResources } },
       },
       {
         displayName: 'Notes',
@@ -137,7 +137,7 @@ export class GoogleTagManagerEditor implements INodeType {
         type: 'string',
         default: '',
         description: 'Optional GTM notes for this resource',
-        displayOptions: { show: { resource: nonWorkspaceResources } },
+        displayOptions: { show: { editorResource: nonWorkspaceResources } },
       },
       {
         displayName: 'Parent Folder ID',
@@ -145,7 +145,7 @@ export class GoogleTagManagerEditor implements INodeType {
         type: 'string',
         default: '',
         description: 'Optional folder ID for a tag, trigger, or variable',
-        displayOptions: { show: { resource: typedResources } },
+        displayOptions: { show: { editorResource: typedResources } },
       },
       {
         displayName: 'Advanced Resource Options',
@@ -160,7 +160,7 @@ export class GoogleTagManagerEditor implements INodeType {
         type: 'string',
         default: '',
         description: 'Optional fingerprint from a previous GET response. GTM rejects the update if the resource changed since that read.',
-        displayOptions: { show: { operation: ['update'] } },
+        displayOptions: { show: { editorOperation: ['update'] } },
       },
       {
         displayName: 'Confirm Draft Change',
@@ -178,8 +178,17 @@ export class GoogleTagManagerEditor implements INodeType {
     const returnData: Array<{ json: IDataObject }> = [];
 
     for (let itemIndex = 0; itemIndex < items.length; itemIndex++) {
-      const resource = this.getNodeParameter('resource', itemIndex) as EditorResource;
-      const operation = this.getNodeParameter('operation', itemIndex) as EditorOperation;
+      const nodeParameters = this.getNode().parameters as IDataObject;
+      if ('resource' in nodeParameters || 'operation' in nodeParameters) {
+        throw new NodeOperationError(
+          this.getNode(),
+          'This Google Tag Manager Editor node uses legacy resource/operation selectors. Open the node, reselect the intended editorResource and editorOperation values, then save the workflow before executing it.',
+          { itemIndex },
+        );
+      }
+
+      const resource = this.getNodeParameter('editorResource', itemIndex) as EditorResource;
+      const operation = this.getNodeParameter('editorOperation', itemIndex) as EditorOperation;
       const confirmed = this.getNodeParameter('confirmDraftChange', itemIndex, false) as boolean;
 
       if (!confirmed) {
