@@ -1,5 +1,7 @@
 # 🏷️ **NinjaDataBuilder™** Google Tag Manager for n8n
 
+> n8n 2.44.5: [validation checkpoint](docs/compatibility/n8n-2.44.5.md). This is a maintenance source checkpoint, not a new npm release or blanket provider approval.
+
 [![npm version](https://img.shields.io/npm/v/%40ninjadatabuilder%2Fn8n-nodes-google-tag-manager?label=npm)](https://www.npmjs.com/package/@ninjadatabuilder/n8n-nodes-google-tag-manager)
 [![npm downloads](https://img.shields.io/npm/dm/%40ninjadatabuilder%2Fn8n-nodes-google-tag-manager?label=downloads)](https://www.npmjs.com/package/@ninjadatabuilder/n8n-nodes-google-tag-manager)
 [![License](https://img.shields.io/npm/l/%40ninjadatabuilder%2Fn8n-nodes-google-tag-manager?label=license)](LICENSE)
